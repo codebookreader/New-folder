@@ -1,5 +1,14 @@
 <?php
 require_once("connection.php");
+if(isset($_POST["SUBMIT"])){
+    $ssn = $_POST["ssn"];
+    $name = $_POST["name"];
+    $age = $_POST["age"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+}
+/*
 if(isset($_GET['ssn'])){
 
     $ssn = $_GET['ssn'];
@@ -55,24 +64,24 @@ $password = $_POST["Password"];*/
 
 
 $host = "localhost";
+$user = "root";
+$pass = " ";
 $dbname = "drugdispensings";
-$username = "root";
-$password = "1Rurilongstaff1";
+
+$conn = mysqli_connect($host,
+                       $user,
+                       $pass,
+                       $dbname);
         
-$conn = mysqli_connect(hostname: $host,
-                       username: $username,
-                       password: $password,
-                       database: $dbname);
-        
-if (mysqli_connect_errno()) {
+/*if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_error());
-}          
+} */         
         
 $sql = "INSERT INTO patient (ssn, name, age, email, password)
         VALUES (?, ?, ?, ?, ?)";
+mysqli_query($conn,$sql);
 
-
-$stmt = mysqli_stmt_init($conn);
+//$stmt = mysqli_stmt_init($conn);
 
 
 if ( ! mysqli_stmt_prepare($stmt, $sql)) {
